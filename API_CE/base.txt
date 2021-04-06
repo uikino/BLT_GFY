@@ -1,0 +1,9 @@
+# 描述方式:
+# 包名-API名称-(fun|var|类类型)-可选
+# 包名-API名称-函数-Signature.形参名称,形参名称=('默认值'|True|123),
+# 如 : bpy.utils-user_resource-fun-Signature.resource_type+path=''+create=False
+# 对应检查 检查 bpy.utils 下 是否存在这样一个函数 user_resource ，参数为resource_type,path='',create=False
+# 原型 bpy.utils.user_resource(resource_type, path='', create=False)
+# 包名-API名称-变量-DefaultValue.类型=默认值
+# 如 bpy.app-version-var-Signature.tuple=(2,92,0)+...
+# 原型 : bpy.app.version = (2,92,0)
