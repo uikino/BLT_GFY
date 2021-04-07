@@ -13,6 +13,9 @@ import importlib
 # 获取模块列表
 import sys
 
+description_list = []
+flags = {}
+
 if __name__ == '__main':
     enable_generate_signatures = False
     enable_generate_signatures_with_default_value = False
@@ -22,8 +25,6 @@ if __name__ == '__main':
 
     print('导出API的包名 : ')
     package_name = input()
-    print('是否允许递归导出? Y/N')
-    package_recursive = input()
     print('对于函数API 是否需要生成函数签名? Y/N')
     a = input()
     print('对于函数API 是否还需要生成带有默认值与类型的签名? Y/N')
@@ -33,10 +34,6 @@ if __name__ == '__main':
     print('对于变量API 是否生成带有类型与默认值的签名')
     ba = input()
 
-    if package_recursive is 'Y' or package_recursive is 'y':
-        enable_recursive = True
-    else:
-        enable_recursive = False
 
     if a is 'Y' or a is 'y':
         enable_generate_signatures = True
@@ -58,17 +55,35 @@ if __name__ == '__main':
     else:
         enable_generate_field_with_default_value = False
 
+    flags = {
+        'fun_sig': enable_generate_signatures,
+        'fun_sig_dv': enable_generate_signatures_with_default_value,
+        'attr_gt': enable_generate_field_with_type,
+        'attr_gt_dv': enable_generate_field_with_default_value
+    }
+
     importlib.import_module(package_name)
     package_module_object = sys.modules[package_name]
-    for itr in dir(package_module_object):
-        # 跳过魔法函数，魔法变量
-        if '__' in itr[0:2]:
-            continue
-        if inspect.ismodule(getattr(package_module_object,itr)):
+
+    # 获取模块及子模块信息
+    package_infos = [itr for itr in sys.modules.items() if itr[0].startswith(package_name) and '_' not in itr[0]]
+
+
+
+    def generate_description(pk_obj):
+        # 判断基础类型 tuple list dict str bool float int
+        if isinstance(pk_obj,(tuple,list,dict,str,int,float)):
             pass
-        elif inspect.isfunction(getattr(package_module_object,itr)):
-            pass
-        else:
+        elif inspect.isfunction(pk_obj):
             pass
 
-    pass
+
+    def __internal_object_is_class(fake_type) -> bool:
+        """
+        类型检查 返回 'fun'、'var'、'class'、'module'
+        :param fake_class:
+        :return:
+        """
+        # Trump say: bpy.app is fake news(class)
+        return False
+
