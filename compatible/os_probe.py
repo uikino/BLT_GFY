@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 @author: discaz
 @date: 2021-04-06 13:39:18
 @description: BLT 完全版插件
 @email: 994679395@qq.com
-'''
+"""
 
 # 独立于 blender 而调用 python 标准库，避免 blender 版本更新导致API修改而致使失败
 import os

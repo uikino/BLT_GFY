@@ -1,0 +1,24 @@
+# 清单列表,包名-API,例如可以检查bpy下有无app
+bpy-app
+bpy-context
+bpy-props
+bpy-types
+bpy-utils
+bpy.app-version
+bpy.app-build_platform
+bpy.app-tempdir
+bpy.context-preferences
+bpy.context.preferences-addons
+bpy.props-IntProperty
+bpy.props-FloatProperty
+bpy.props-FloatVectorProperty
+bpy.props-BoolProperty
+bpy.props-EnumProperty
+bpy.props-StringProperty
+bpy.props-CollectionProperty
+bpy.types-AddonPreferences
+bpy.types-Operator
+bpy.types-Menu
+bpy.types-Panel
+bpy.utils-resource_path
+bpy.utils-script_path_user
