@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 @author: discaz
 @date: 2021-04-06 16:55:18
 @description: Python 包API提取工具
 @email: 994679395@qq.com
-'''
+"""
 
 # 类型inspect
 import inspect
@@ -33,7 +33,6 @@ if __name__ == '__main':
     b = input()
     print('对于变量API 是否生成带有类型与默认值的签名')
     ba = input()
-
 
     if a is 'Y' or a is 'y':
         enable_generate_signatures = True
@@ -69,10 +68,9 @@ if __name__ == '__main':
     package_infos = [itr for itr in sys.modules.items() if itr[0].startswith(package_name) and '_' not in itr[0]]
 
 
-
     def generate_description(pk_obj):
         # 判断基础类型 tuple list dict str bool float int
-        if isinstance(pk_obj,(tuple,list,dict,str,int,float)):
+        if isinstance(pk_obj, (tuple, list, dict, str, int, float)):
             pass
         elif inspect.isfunction(pk_obj):
             pass
@@ -81,9 +79,8 @@ if __name__ == '__main':
     def __internal_object_is_class(fake_type) -> bool:
         """
         类型检查 返回 'fun'、'var'、'class'、'module'
-        :param fake_class:
+        :param fake_type:
         :return:
         """
         # Trump say: bpy.app is fake news(class)
         return False
-

@@ -5,6 +5,8 @@
 @description: BLT 完全版插件
 @email: 994679395@qq.com
 """
+import inspect
+
 try:
     import importlib
 except RuntimeError as e:
@@ -48,3 +50,26 @@ class python_probe(object):
         else:
             importlib.import_module(pkg_name)
 
+    def exist_object(self, pkg_name, obj_name) -> dict:
+        if not self.is_loaded(pkg_name):
+            return {'status': False, 'message': 'module not loaded'}
+        if hasattr(sys.modules[pkg_name], obj_name):
+            return {'status': True}
+        else:
+            return {'status': False, 'message': '{}.{} not found'.format(pkg_name, obj_name)}
+
+    def exist_var(self, obj_name, attr_name) -> dict:
+        rs = self.exist_object(obj_name, attr_name)
+        if rs['status']:
+            is_f = inspect.isfunction(getattr(sys.modules[obj_name], attr_name))
+            return {'status': not is_f}
+        else:
+            return rs
+
+    def exist_method(self, obj_name, method_name) -> dict:
+        rs = self.exist_object(obj_name, method_name)
+        if rs['status']:
+            is_f = inspect.isfunction(getattr(sys.modules[obj_name], method_name))
+            return {'status': is_f}
+        else:
+            return rs
