@@ -8,9 +8,8 @@
 
 from bpy.types import Operator
 
+
 class LoginButton(Operator):
     bl_idname = 'BLT_OP.LoginButton'
-    bl_label =  'BLT_OP.LoginButton'
+    bl_label = 'BLT_OP.LoginButton'
     bl_description = 'BLT登录按钮'
-    
-

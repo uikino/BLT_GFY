@@ -8,6 +8,4 @@
 
 # import
 
-class requestBody():
-    pass
 
